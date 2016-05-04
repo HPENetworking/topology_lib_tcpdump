@@ -94,6 +94,7 @@ def tcpdump_capture_interface(enode, options, interface_name, capture_time,
     cmd = [
         'tcpdump -ni ',
         result['linux_interface'],
+        ' ',
         options,
         ' -ttttt > /tmp/',
         interface_name,
