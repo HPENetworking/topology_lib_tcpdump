@@ -61,7 +61,7 @@ def tcpdump_rate(enode, interface_name):
     return rate
 
 
-def tcpdump_capture_interface(enode, options='', interface_name, capture_time,
+def tcpdump_capture_interface(enode, options, interface_name, capture_time,
                               num_cpu_samples=0, namespace=None):
     """
     Start packet capture using tcpdump.
