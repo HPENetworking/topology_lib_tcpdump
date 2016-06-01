@@ -5,7 +5,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+# 
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing,
@@ -62,7 +62,7 @@ def tcpdump_rate(enode, interface_name):
 
 
 def tcpdump_capture_interface(enode, interface_name, capture_time,
-                              options='', num_cpu_samples=0, namespace=None):
+                              options='', num_cpu_samples=0, namespace=None, kill_process=True):
     """
     Start packet capture using tcpdump.
 
@@ -73,6 +73,7 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
     :param int capture_time: Time in seconds to capture with tcpdump.
     :param int num_cpu_samples: Number of CPU samples to get CPU utilization.
     :param str namespace: The network namespace in which to run the capture.
+    :param bool kill_process: Flag to kill TCP process or let it runs
     :rtype: dict
     :return: Dictionary of any metadata with information collected
      during the capture.
@@ -121,7 +122,9 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
                 cpu_util = cpu_util + float(cpu_us)
         cpu_util = cpu_util/num_cpu_samples
 
-    enode('killall tcpdump &', shell='bash')
+    if kill_process:
+        enode('killall tcpdump &', shell='bash')
+
     return {'cpu_util': cpu_util}
 
 __all__ = [
