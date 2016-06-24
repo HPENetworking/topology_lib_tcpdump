@@ -70,7 +70,8 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
     :type enode: topology.platforms.base.BaseNode
     :param str options: The filter options to be passed to tcpdump.
     :param str interface_name: interface name.
-    :param int capture_time: Time in seconds to capture with tcpdump.
+    :param int capture_time: Time in seconds to capture with tcpdump,
+    when it is 0, it keeps the tcpdump process running
     :param int num_cpu_samples: Number of CPU samples to get CPU utilization.
     :param str namespace: The network namespace in which to run the capture.
     :rtype: dict
@@ -121,7 +122,9 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
                 cpu_util = cpu_util + float(cpu_us)
         cpu_util = cpu_util/num_cpu_samples
 
-    enode('killall tcpdump &', shell='bash')
+    if capture_time:
+        enode('killall tcpdump &', shell='bash')
+
     return {'cpu_util': cpu_util}
 
 __all__ = [
