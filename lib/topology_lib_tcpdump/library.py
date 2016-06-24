@@ -5,7 +5,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing,
@@ -70,7 +70,8 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
     :type enode: topology.platforms.base.BaseNode
     :param str options: The filter options to be passed to tcpdump.
     :param str interface_name: interface name.
-    :param int capture_time: Time in seconds to capture with tcpdump.
+    :param int capture_time: Time in seconds to capture with tcpdump,
+    when it is 0, it keeps the tcpdump process running
     :param int num_cpu_samples: Number of CPU samples to get CPU utilization.
     :param str namespace: The network namespace in which to run the capture.
     :rtype: dict
