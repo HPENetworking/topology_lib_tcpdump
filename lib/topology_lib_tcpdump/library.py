@@ -5,7 +5,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+# 
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing,
@@ -121,7 +121,9 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
                 cpu_util = cpu_util + float(cpu_us)
         cpu_util = cpu_util/num_cpu_samples
 
-    enode('killall tcpdump &', shell='bash')
+    if capture_time:
+        enode('killall tcpdump &', shell='bash')
+
     return {'cpu_util': cpu_util}
 
 __all__ = [
