@@ -71,12 +71,12 @@ def tcpdump_capture_interface(enode, interface_name, capture_time,
     :param str options: The filter options to be passed to tcpdump.
     :param str interface_name: interface name.
     :param int capture_time: Time in seconds to capture with tcpdump,
-    when it is 0, it keeps the tcpdump process running
+        when it is 0, it keeps the tcpdump process running
     :param int num_cpu_samples: Number of CPU samples to get CPU utilization.
     :param str namespace: The network namespace in which to run the capture.
     :rtype: dict
     :return: Dictionary of any metadata with information collected
-     during the capture.
+        during the capture.
     """
     cmd = [
         'tcpdump -D',
